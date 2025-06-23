@@ -1,0 +1,13 @@
+{% extends "invoice_app/base.html" %}
+{% block content %}
+<h2>💬 Document Chatbot</h2>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="question" placeholder="Ask about invoice..." required>
+    <button type="submit">Ask</button>
+</form>
+{% if question %}
+<p><strong>🧑 You:</strong> {{ question }}</p>
+<p><strong>🤖 Bot:</strong> {{ response }}</p>
+{% endif %}
+{% endblock %}

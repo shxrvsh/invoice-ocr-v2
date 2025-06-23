@@ -1,0 +1,13 @@
+{% extends "invoice_app/base.html" %}
+{% block content %}
+<h2>🖼️ Field Viewer</h2>
+<form method="GET">
+    <select name="field" onchange="this.form.submit()">
+        {% for key in fields %}
+            <option {% if key == selected_key %}selected{% endif %}>{{ key }}</option>
+        {% endfor %}
+    </select>
+</form>
+<p><strong>{{ selected_key }}:</strong> {{ value }}</p>
+<img src="{{ image_path }}" width="600">
+{% endblock %}

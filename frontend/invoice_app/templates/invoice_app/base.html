@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>📄 Invoice App</title>
+    <link rel="stylesheet" href="{% static 'invoice_app/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a> |
+        <a href="{% url 'upload' %}">Upload</a> |
+        <a href="{% url 'viewer' %}">Viewer</a> |
+        <a href="{% url 'chatbot' %}">Chatbot</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

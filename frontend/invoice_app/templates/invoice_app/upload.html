@@ -1,0 +1,10 @@
+{% extends "invoice_app/base.html" %}
+{% block content %}
+<h2>📤 Upload an Invoice</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="document" required>
+    <button type="submit">Upload</button>
+</form>
+{% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+{% endblock %}
