@@ -3,6 +3,12 @@
 <h2>📤 Upload an Invoice</h2>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+    <label>Select LLM:</label>
+    <select name="llm_choice" required>
+        <option value="gemini">Gemini</option>
+        <option value="cohere">Cohere</option>
+        <option value="together">Mistral (Together)</option>
+    </select>
     <input type="file" name="document" required>
     <button type="submit">Upload</button>
 </form>

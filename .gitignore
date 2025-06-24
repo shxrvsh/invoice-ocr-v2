@@ -3,3 +3,5 @@
 frontend/db.sqlite3
 *.sqlite3
 /backend/models
+/backend/parser/gemini_prompt.py
+/backend/__pycache__

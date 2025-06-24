@@ -17,16 +17,19 @@ def home(request):
 def upload_view(request):
     if request.method == "POST" and request.FILES["document"]:
         uploaded_file = request.FILES["document"]
+        llm_choice = request.POST.get("llm_choice", "gemini")
         relative_path = default_storage.save(uploaded_file.name, uploaded_file)
         full_path = os.path.join(settings.MEDIA_ROOT, relative_path)
         with open(full_path, "rb") as f:
             files = {"file": (uploaded_file.name, f, uploaded_file.content_type)}
-            response = requests.post(f"{FASTAPI_URL}/parse", files=files)
+            data = {"llm_choice": llm_choice}
+            response = requests.post(f"{FASTAPI_URL}/parse", files=files,data=data)
         
         if response.status_code == 200:
             file_id = response.json()["file_id"]
             request.session["file_id"] = file_id
             request.session["image_name"] = full_path
+            request.session["llm_choice"] = request.POST.get("llm_choice", "gemini")
             return redirect("viewer")
         else:
             return render(request, 'invoice_app/upload.html', {"error": "Failed to parse."})
@@ -74,8 +77,26 @@ def viewer(request):
         })
     except FileNotFoundError:
         return redirect("upload")
-
+    
 def chatbot(request):
+    if request.method == "POST":
+        question = request.POST.get("question")
+        file_id = request.session.get("file_id")
+        llm_choice = request.session.get("llm_choice", "gemini")
+        data = {
+            "question": question,
+            "file_id": file_id,
+            "llm_choice": llm_choice
+        }
+        response = requests.post(f"{FASTAPI_URL}/chat", data=data)
+        if response.status_code == 200:
+            reply = response.json()["reply"]
+            return render(request, 'invoice_app/chatbot.html', {
+                "response": reply, "question": question
+            })
+    return render(request, 'invoice_app/chatbot.html')
+
+'''def chatbot(request):
     if request.method == "POST":
         question = request.POST.get("question")
         file_id = request.session.get("file_id")
@@ -100,4 +121,4 @@ Only answer based on the extracted data above.
         reply = requests.post(url, headers=headers, json=payload).json()['candidates'][0]['content']['parts'][0]['text']
         return render(request, 'invoice_app/chatbot.html', {"response": reply, "question": question})
 
-    return render(request, 'invoice_app/chatbot.html')
+    return render(request, 'invoice_app/chatbot.html')'''
