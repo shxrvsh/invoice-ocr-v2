@@ -6,6 +6,8 @@ from django.conf import settings
 import pickle
 from PIL import Image, ImageDraw
 import uuid
+from dotenv import load_dotenv
+load_dotenv() 
 
 FASTAPI_URL = "http://localhost:8000"  # Update if your FastAPI runs elsewhere
 
@@ -93,7 +95,7 @@ Only answer based on the extracted data above.
 """
         payload = {"contents": [{"parts": [{"text": prompt}]}]}
         headers = {"Content-Type": "application/json"}
-        api_key = "AIzaSyAxy3LkOnpgZhzHiyCuoz_ZbpciPOTDJWk"
+        api_key = os.getenv("API_KEY")
         url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
         reply = requests.post(url, headers=headers, json=payload).json()['candidates'][0]['content']['parts'][0]['text']
         return render(request, 'invoice_app/chatbot.html', {"response": reply, "question": question})
