@@ -1,6 +1,9 @@
 {% extends "invoice_app/base.html" %}
 {% load static %}
 {% block content %}
-<h1>📄 Welcome to Invoice Parser</h1>
-<p>This tool extracts structured data from invoice images using Gemini + OCR.</p>
+<section class="hero">
+    <h1>📄 Welcome to Invoice Parser</h1>
+    <p class="subtitle">Extract structured data from invoice images using advanced AI and OCR.</p>
+    <a href="{% url 'upload' %}" class="cta-btn">Get Started</a>
+</section>
 {% endblock %}

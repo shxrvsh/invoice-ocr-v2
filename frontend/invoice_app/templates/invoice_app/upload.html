@@ -1,16 +1,19 @@
 {% extends "invoice_app/base.html" %}
 {% block content %}
-<h2>📤 Upload an Invoice</h2>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label>Select LLM:</label>
-    <select name="llm_choice" required>
-        <option value="gemini">Gemini</option>
-        <option value="cohere">Cohere</option>
-        <option value="together">Mistral (Together)</option>
-    </select>
-    <input type="file" name="document" required>
-    <button type="submit">Upload</button>
-</form>
-{% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+<div class="card upload-card">
+    <h2>📤 Upload an Invoice</h2>
+    <form method="POST" enctype="multipart/form-data" class="upload-form">
+        {% csrf_token %}
+        <label for="llm_choice">Select LLM:</label>
+        <select name="llm_choice" id="llm_choice" required>
+            <option value="gemini">Gemini</option>
+            <option value="cohere">Cohere</option>
+            <option value="together">Mistral (Together)</option>
+        </select>
+        <label for="document">Invoice File:</label>
+        <input type="file" name="document" id="document" required>
+        <button type="submit" class="primary-btn">Upload</button>
+    </form>
+    {% if error %}<p class="error-msg">{{ error }}</p>{% endif %}
+</div>
 {% endblock %}

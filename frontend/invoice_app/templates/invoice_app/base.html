@@ -1,18 +1,30 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📄 Invoice App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'invoice_app/style.css' %}">
 </head>
 <body>
-    <nav>
-        <a href="{% url 'home' %}">Home</a> |
-        <a href="{% url 'upload' %}">Upload</a> |
-        <a href="{% url 'viewer' %}">Viewer</a> |
-        <a href="{% url 'chatbot' %}">Chatbot</a>
-    </nav>
-    <hr>
-    {% block content %}{% endblock %}
+    <header>
+        <nav class="navbar">
+            <div class="nav-logo">📄 Invoice App</div>
+            <div class="nav-links">
+                <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+                <a href="{% url 'upload' %}" class="{% if request.resolver_match.url_name == 'upload' %}active{% endif %}">Upload</a>
+                <a href="{% url 'viewer' %}" class="{% if request.resolver_match.url_name == 'viewer' %}active{% endif %}">Viewer</a>
+                <a href="{% url 'chatbot' %}" class="{% if request.resolver_match.url_name == 'chatbot' %}active{% endif %}">Chatbot</a>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; {{ now|date:'Y' }} Invoice App. All rights reserved.</p>
+    </footer>
 </body>
 </html>

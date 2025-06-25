@@ -1,13 +1,20 @@
 {% extends "invoice_app/base.html" %}
 {% block content %}
-<h2>🖼️ Field Viewer</h2>
-<form method="GET">
-    <select name="field" onchange="this.form.submit()">
-        {% for key in fields %}
-            <option {% if key == selected_key %}selected{% endif %}>{{ key }}</option>
-        {% endfor %}
-    </select>
-</form>
-<p><strong>{{ selected_key }}:</strong> {{ value }}</p>
-<img src="{{ image_path }}" width="600">
+<div class="card viewer-card">
+    <h2>📝 Field Viewer</h2>
+    <form method="GET" class="viewer-form">
+        <label for="field">Select Field:</label>
+        <select name="field" id="field" onchange="this.form.submit()">
+            {% for key in fields %}
+                <option {% if key == selected_key %}selected{% endif %}>{{ key }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <div class="field-value">
+        <strong>{{ selected_key }}:</strong> {{ value }}
+    </div>
+    <div class="image-preview">
+        <img src="{{ image_path }}" alt="Invoice Field" class="responsive-img">
+    </div>
+</div>
 {% endblock %}

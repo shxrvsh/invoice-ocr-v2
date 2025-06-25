@@ -1,13 +1,17 @@
 {% extends "invoice_app/base.html" %}
 {% block content %}
-<h2>💬 Document Chatbot</h2>
-<form method="POST">
-    {% csrf_token %}
-    <input type="text" name="question" placeholder="Ask about invoice..." required>
-    <button type="submit">Ask</button>
-</form>
-{% if question %}
-<p><strong>🧑 You:</strong> {{ question }}</p>
-<p><strong>🤖 Bot:</strong> {{ response }}</p>
-{% endif %}
+<div class="card chatbot-card">
+    <h2>💬 Document Chatbot</h2>
+    <form method="POST" class="chatbot-form">
+        {% csrf_token %}
+        <input type="text" name="question" placeholder="Ask about invoice..." required>
+        <button type="submit" class="primary-btn">Ask</button>
+    </form>
+    {% if question %}
+    <div class="chat-messages">
+        <div class="user-msg"><strong>🧑 You:</strong> {{ question }}</div>
+        <div class="bot-msg"><strong>🤖 Bot:</strong> {{ response }}</div>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}
