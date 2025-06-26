@@ -1,5 +1,7 @@
 # Invoice Parser AI Application
 
+![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)
+
 This project is an end-to-end web application for extracting structured data from invoice images using advanced AI, OCR, and LLMs (Large Language Models). It features a Django frontend for user interaction and a FastAPI backend for processing, OCR, and LLM-based parsing.
 
 ---
@@ -82,8 +84,7 @@ project/
 ### 1. Clone the Repository
 
 ```sh
-git clone <your-repo-url>
-cd project/v2
+git clone https://github.com/shxrvsh/invoice-ocr-v2.git
 ```
 
 ### 2. Python Environment
@@ -146,10 +147,10 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 ```sh
 cd frontend
-python manage.py runserver
+python manage.py runserver 8001
 ```
 
-- Access the app at: `http://localhost:8000` (FastAPI) and `http://localhost:8000` (Django, usually on port 8000 or 8001).
+- Access the app at: http://localhost:8000 (FastAPI) and http://localhost:8001 (Django by default)
 
 ---
 
@@ -167,19 +168,19 @@ python manage.py runserver
 
 ### Home Page
 
-![Home Screenshot](screenshots/main_page.png)
+![Home Screenshot](https://raw.githubusercontent.com/shxrvsh/invoice-ocr-v2/main/Screenshots/main_page.png)
 
 ### Upload Page
 
-![Upload Screenshot](screenshots/upload_page.png)
+![Upload Screenshot](https://raw.githubusercontent.com/shxrvsh/invoice-ocr-v2/main/Screenshots/upload_page.png)
 
 ### Viewer Page
 
-![viewer Screenshot](screenshots/viewer_page.png)
+![Viewer Screenshot](https://raw.githubusercontent.com/shxrvsh/invoice-ocr-v2/main/Screenshots/viewer_page.png)
 
 ### ChatBot Page
 
-![ChatBot Screenshot](screenshots/chatbot_page.png)
+![ChatBot Screenshot](https://raw.githubusercontent.com/shxrvsh/invoice-ocr-v2/main/Screenshots/chatbot_page.png)
 
 
 
@@ -215,11 +216,28 @@ python manage.py runserver
 - **CORS issues:** If running frontend/backend on different ports, configure CORS in FastAPI.
 
 ---
+## Acknowledgements
 
-## License
+- Document layout detection powered by [LayoutParser](https://github.com/Layout-Parser/layout-parser) and [Detectron2](https://github.com/facebookresearch/detectron2)
+- Layout models based on [PubLayNet](https://github.com/ibm-aur-nlp/PubLayNet)
+- OCR by [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
+- Invoice dataset: [Kaggle - High-Quality Invoice Images for OCR](https://www.kaggle.com/datasets/osamahosamabdellatif/high-quality-invoice-images-for-ocr)
+- LLM-powered parsing using APIs from:
+  - [Gemini (Google AI)](https://deepmind.google/technologies/gemini/)
+  - [Cohere](https://cohere.com/)
+  - [Together AI](https://www.together.ai/)
 
-[MIT License](LICENSE) (or specify your license here)
+Special thanks to the open-source community!
 
 ---
 
-*For questions or contributions, please open an issue
+## Previous Versions
+
+You can also check out the original version of this project here:  
+[Invoice OCR - Version 1 (Prototype)](https://github.com/shxrvsh/invoice-ocr-v1)
+
+## License
+
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).  
+You may use this code for personal or educational purposes.  
+**Commercial use is not permitted without permission — contact the author for licensing.**
