@@ -1,0 +1,38 @@
+# Core Python packages
+numpy
+pandas
+requests
+python-dotenv
+
+# Computer Vision & OCR
+opencv-python
+Pillow
+pytesseract
+
+# Document AI & Layout Parsing
+layoutparser
+# Detectron2 is required for layoutparser's Detectron2LayoutModel.
+# Please install Detectron2 following the official instructions for your OS and CUDA version:
+# https://detectron2.readthedocs.io/en/latest/tutorials/install.html
+
+# Deep Learning OCR (optional, for notebook experiments)
+doctr
+easyocr
+
+# Web Frameworks
+django
+fastapi
+uvicorn
+
+# Visualization (for notebooks)
+matplotlib
+# For Jupyter Notebooks (if using .ipynb files)
+notebook
+ipython
+
+# Note:
+# For Detectron2 model weights (PubLayNet), download the weights from the official source:
+# https://layout-parser.github.io/guide/models.html
+# After downloading, specify the local path to the model weights in your code/config:
+# model_path="/path/to/your/model_final.pth"
+# Do NOT hardcode the example user's path; use your own path.
